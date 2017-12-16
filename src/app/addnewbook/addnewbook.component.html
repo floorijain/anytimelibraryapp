@@ -1,0 +1,45 @@
+<app-adminnavigationbar></app-adminnavigationbar>
+<h3>Add new books here by providing ISBN</h3>
+<div class="container">
+    <!-- <div class = "row"> -->
+    <div class="col-sm-6">
+        <div class="input-group stylish-input-group">
+            <input type="text" [(ngModel)]="ISBN" class="form-control" placeholder="Please provide ISBN">
+            <span class="input-group-addon">
+                <button (click)="searchBook(ISBN,'No book found')">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <table *ngIf = "posts && posts.items" class="table table-borderless table-hover">
+        <tbody>
+            <tr>
+                <td style="width: 85px; height: auto;">
+                    <span>
+                        <a href="">
+                            <img src="{{thumbnail}}" class="img-responsive">
+                        </a>
+                    </span>
+                </td>
+                <td>
+                    <tr>
+                        <span style="font-size: 15px">
+                            <a href="">
+                                <b>{{title}}</b>
+                            </a>
+                        </span>
+                        <span style="font-size: 12px"> by </span>
+                        <em style="font-size: 12px; color: blue">
+                            <b>{{author}}</b>
+                        </em>
+                    </tr>
+                    <tr>
+                            <p class="serif">{{description}}</p>
+                        </tr>
+                        <span><button class="btn btn-success" (click)="addBook(newbookobject,'Book is sucessfully added.')"> Add Book </button></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

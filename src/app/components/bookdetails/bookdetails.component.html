@@ -1,0 +1,33 @@
+<app-navigationbar></app-navigationbar>
+
+  <div *ngIf = "bookcatalogueService.bookdata">
+        <span *ngIf="bookcatalogueService.bookdata.thumbnailurl">
+            <img style = "display: block;
+            margin: auto;max-width: 100%;
+            border-radius:8px;
+            height: auto;justify-content: center;" width="200" height="150" src="{{bookcatalogueService.bookdata.thumbnailurl}}" class="img-responsive" >
+            </span>
+            <div style = "display: block;
+            margin: auto">
+              <p><b>Book ID:</b>{{bookcatalogueService.bookdata.id}}</p>
+              <p><b>Book Title:</b>{{bookcatalogueService.bookdata.title}}</p>
+              <p><b>Book Description:</b>{{bookcatalogueService.bookdata.description}}</p>
+              <p><b>Book Author:</b> {{bookcatalogueService.bookdata.author}}</p>
+              <p><b>Book Category:</b>{{bookcatalogueService.bookdata.category}}</p>
+              <p><b>Book ISBN number:</b>{{bookcatalogueService.bookdata.ISBN}}</p>
+              <p><b>Location for Issue:</b>{{bookcatalogueService.bookdata.location}}</p>
+              <button class="btn btn-success" (click)="issueBook(bookcatalogueService.bookdata.title,'Book is sucessfully issued.')">ISSUE</button>
+            </div>
+            <div><b>Review Your Book.</b></div>
+              <div>
+                 <span>
+                    <textarea [(ngModel)]="feedback" rows="4" cols="50">
+                      </textarea>
+                   </span> 
+              </div>
+              <div>
+                <button class="btn btn-success" (click)="submitBookReview('Review is submitted successfully.')">Submit Review</button>
+              </div>
+                  
+  </div>           
+

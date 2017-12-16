@@ -1,0 +1,30 @@
+<app-navigationbar></app-navigationbar>
+<div>
+    <table class="table table-borderless table-hover">
+        <tbody>
+          <tr *ngFor="let book of service.issuebook | unique ">
+            <td style="width: 85px; height: auto;">
+              <span *ngIf="book.thumbnailurl">
+                <a href="">
+                <img src="{{book.thumbnailurl}}" class="img-responsive" >
+                </a>
+                </span>
+            </td>
+            <td>
+              <tr>
+                <span style="font-size: 15px"><b>{{book.title}}</b></span>
+                <span style="font-size: 12px">  by  </span>
+                <em style="font-size: 12px; color: blue"><b>{{book.author}}</b></em>
+                <span><button class="btn btn-success"(click)="renewBook('Book is sucessfully renewed.')">RENEW</button>
+                  <span ><button (click)="returnBook(book,'Book is successfully returned.')" class=" btn btn-success">RETURN</button></span>
+                </span>
+              </tr>
+              <tr>
+                <p class="serif">{{book.description}}</p>
+              </tr>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>

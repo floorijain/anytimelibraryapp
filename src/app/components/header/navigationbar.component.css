@@ -1,0 +1,8 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+

@@ -1,0 +1,88 @@
+<app-navigationbar></app-navigationbar>
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="input-group stylish-input-group">
+        <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search by Author or Title">
+        <span class="input-group-addon">
+            <button type="submit">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </span>
+      </div>
+    </div>
+    <div class="col-sm-2 pull-right">
+      <select class="form-control"  [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+        <option  *ngFor="let option of options" [ngValue]="option">{{ option }}</option>
+       </select>
+    </div>
+  </div>
+  <div [hidden] = 'search'>
+      <table class="table table-borderless table-hover">
+          <tbody>
+            <tr *ngFor="let x of selectedData">
+              <td style="width: 85px; height: auto;">
+                <span *ngIf="x.thumbnailurl">
+                  <a href="">
+                  <img src="{{x.thumbnailurl}}" class="img-responsive" >
+                  </a>
+                  </span>
+              </td>
+              <td>
+                <tr>
+                  <span style="font-size: 15px"><a (click) = "bookcatalogueService.getBookDetails(x.id)" [routerLink]="['/bookDetails']"><b>{{x.title}}</b></a></span>
+                  <span style="font-size: 12px">  by  </span>
+                  <em style="font-size: 12px; color: blue"><b>{{x.author}}</b></em>
+                  <span><button class="btn btn-success" (click)="issueBook(x.title,'Book is sucessfully issued.')"> ISSUE </button></span>
+                </tr>
+                <tr>
+                  <p class="serif">{{x.description}}</p>
+                </tr>
+                <tr>
+                    <span>
+                        <button class="" btnRadio="Like" uncheckable>Like</button>
+                      </span>
+                    <!-- <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>  -->
+                </tr>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+<table [hidden]= 'selected != options[0]' *ngIf = 'search' class="table table-borderless table-hover">
+    <tbody>
+      <tr *ngFor="let book of bookCatalogue | query:'author,title':search">
+        <td style="width: 85px; height: auto;">
+          <span *ngIf="book.thumbnailurl">
+            <a href="">
+            <img src="{{book.thumbnailurl}}" class="img-responsive" >
+            </a>
+            </span>
+        </td>
+        <td>
+          <tr>
+            <span style="font-size: 15px"><a (click) = "bookcatalogueService.getBookDetails(book.id)" [routerLink]="['/bookDetails']"><b>{{book.title}}</b></a></span>
+            <span style="font-size: 12px">  by  </span>
+            <em style="font-size: 12px; color: blue"><b>{{book.author}}</b></em>
+            <button class="btn btn-success" (click)="issueBook(book.title,'Book is sucessfully issued.')">ISSUE</button>
+          </tr>
+          <tr>
+            <p class="serif">{{book.description}}</p>
+          </tr>
+          <tr>
+              <button class="fa fa-thumbs-up button button1"></button>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+          </tr>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
